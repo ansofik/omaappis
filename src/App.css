@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -32,7 +33,94 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color:whitesmoke;
+}
+
+header {
+  background-color: slateblue;
+}
+
+#ylamenu {
+  display: flex;
+  padding: 20px;
+}
+
+#ylamenu a {
+  padding: 20px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+}
+
+
+#tenttimenu {
+  display: flex;
+  align-items: flex-start;
+}
+
+#tenttimenu a {
+  padding: 10px;
+  text-transform: uppercase;
+  color: slateblue;
+  text-decoration: none;
+}
+
+#eka {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.width {
+  width: 1000px;
+}
+
+nav {
+  width: 1000px;
+} 
+
+
+
+#nayta {
+  background-color: slateblue;
+  color:white;
+  text-transform: uppercase;
+  padding: 10px; 
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+div.quest {
+  width: 1000px;
+  padding: 50px;
+  background-color: white;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px lightgray;
+  border-radius: 5px;
+}
+
+
+
