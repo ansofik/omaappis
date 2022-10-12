@@ -1,17 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Vastaus from './Vastaus';
 
 const Kysymys = (props) => {
     return (
         <form>
-            <div class="quest">
+            <div className="quest">
                 <label class="bold">{props.kysymys.kysymys}</label>
-                <div>{props.kysymys.vastausVaiht.map((vastaus, i) =>
-                    <div class="ans">
-                        <input type="checkbox" id={"a" + i} />
-                        <label for={"a" + i}>{vastaus}</label>
-                    </div>)}
-                </div>
+                <div>{props.kysymys.vastausVaiht.map(vastaus => <Vastaus vastaus={vastaus}/>)}</div>
             </div>
         </form>
     );

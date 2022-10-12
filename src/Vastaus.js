@@ -3,10 +3,10 @@ import './App.css';
 
 const Vastaus = (props) => {
     return (
-        <div>
-        <label for="input"><input type="checkbox" name="input">{props.vastaus}</input></label>
-        </div>
-    )
+        <div className="ans">
+            <input type="checkbox"/>
+            <label>{props.vastaus.vastaus}</label>
+        </div>)
 }
 
 export default Vastaus;

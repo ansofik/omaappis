@@ -41,15 +41,35 @@ import Oppilas from './Oppilas'; */
 
 const App = () => {
 
+  let vastaus1 = {
+    vastaus: 2
+  }
+
+  let vastaus2 = {
+    vastaus: 3
+  }
+
+  let vastaus3 = {
+    vastaus: 5
+  }
+
+  let vastaus4 = {
+    vastaus: "Kyllä"
+  }
+
+  let vastaus5 = {
+    vastaus: "Ei"
+  }
+
   let kysymys1 = {
     kysymys: "Paljonko on 1+2?",
-    vastausVaiht: [2, 3, 5],
+    vastausVaiht: [vastaus1,vastaus2,vastaus3],
     oikeaVastaus: 3
   }
 
   let kysymys2 = {
     kysymys: "Onko kuu juustoa?",
-    vastausVaiht: ["Kyllä", "Ei"],
+    vastausVaiht: [vastaus4,vastaus5],
     oikeaVastaus: "Ei"
   }
 
@@ -72,7 +92,7 @@ const App = () => {
           <li><a href="">poistu</a></li>
         </ul>
       </header>
-      <div class="center">
+      <div className="center">
         <nav>
           <ul id="tenttimenu">
             <li><a href="" id="eka">{tentti1.nimi}</a></li>
@@ -82,7 +102,7 @@ const App = () => {
         <div>
           {tentti1.kysymykset.map(kysymys => <div><Kysymys kysymys={kysymys} /></div>)}
         </div>
-        <div class="width">
+        <div className="width">
           <a href="" id="nayta">Näytä vastaukset</a>
         </div>
       </div>
