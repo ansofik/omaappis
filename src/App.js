@@ -1,113 +1,72 @@
-import logo from './logo.svg';
 import './App.css';
-import Kysymys from './Kysymys';
+import Header from './Header';
+import Tentti from './Tentti';
+import { useState, useReducer } from 'react';
 
-/* import Luokka from './Luokka';
-import Oppilas from './Oppilas'; */
+let kysymys1 = {
+  kysymys: "Paljonko on 1+2?",
+  vastausVaiht: [1, 3, 4],
+  oikeaIndex: 1
+};
 
+let kysymys2 = {
+  kysymys: "Onko kuu juustoa?",
+  vastausVaiht: ["kyllä", "ei"],
+  oikeaIndex: 1
+};
 
-/* const App = () => {
+let tentti1 = {
+  nimi: "haskell perusteet",
+  kysymykset: [kysymys1, kysymys2]
+};
 
-  let oppilas1 = { nimi: "Olli Oppilas" };
-  let oppilas2 = { nimi: "Mikko Mallikas" };
-  let oppilas3 = { nimi: "Kalle Kolmonen" };
+let tentti2 = {
+  nimi: "javascript perusteet",
+  kysymykset: [kysymys1]
+};
 
-  let luokka1 = {
-    nimi: "3A",
-    oppilaidenMaara: 27,
-    oppilaat: [oppilas1, oppilas3]
-  };
+const tenttiLista = [tentti1, tentti2];
 
-  let luokka2 = {
-    nimi: "2B",
-    oppilaidenMaara: 24,
-    oppilaat: [oppilas2]
-  };
+function reducer(state, action) {
+  let tentitKopio = [...state ];
+  switch (action.type) {
+    case 'TENTIN_NIMI_MUUTTUI':
+      tentitKopio[action.payload.tentinIndex].nimi = action.payload.nimi;
+      return tentitKopio;
 
-  let koulu = {
-    oppilaidenMaara: 100,
-    nimi: "Kangasalan ala-aste",
-    luokat: [luokka1, luokka2]
-  };
+    case 'KYSYMYS_MUUTTUI':
+      tentitKopio[action.payload.tentinIndex].kysymykset[action.payload.kysymyksenIndex].kysymys = action.payload.kysymys;
+      return tentitKopio;
 
-  return (
-    <div>
-    <div>Koulun nimi: {koulu.nimi}</div>
-    <div>Oppilaita koulussa: {koulu.oppilaidenMaara}</div>
-    {koulu.luokat.map(luokka => <div><Luokka luokka={luokka}/></div>)}
-    </div>
-  );
-} */
+    case 'VASTAUS_MUUTTUI':
+      tentitKopio[action.payload.tentinIndex].kysymykset[action.payload.kysymyksenIndex].vastausVaiht[action.payload.vastauksenIndex] = action.payload.vastaus;
+      return tentitKopio;
+
+    default:
+      throw new Error();
+  }
+}
 
 const App = () => {
-
-  let vastaus1 = {
-    vastaus: 2
-  }
-
-  let vastaus2 = {
-    vastaus: 3
-  }
-
-  let vastaus3 = {
-    vastaus: 5
-  }
-
-  let vastaus4 = {
-    vastaus: "Kyllä"
-  }
-
-  let vastaus5 = {
-    vastaus: "Ei"
-  }
-
-  let kysymys1 = {
-    kysymys: "Paljonko on 1+2?",
-    vastausVaiht: [vastaus1,vastaus2,vastaus3],
-    oikeaVastaus: 3
-  }
-
-  let kysymys2 = {
-    kysymys: "Onko kuu juustoa?",
-    vastausVaiht: [vastaus4,vastaus5],
-    oikeaVastaus: "Ei"
-  }
-
-  let tentti1 = {
-    nimi: "haskell perusteet",
-    kysymykset: [kysymys1, kysymys2]
-  }
-
-  let tentti2 = {
-    nimi: "javascript perusteet",
-    kysymykset: [kysymys1]
-  }
+  
+  const [tentit, dispatch] = useReducer(reducer, tenttiLista);
 
   return (
     <div>
-      <header>
-        <ul id="ylamenu">
-          <li><a href="">tentit</a></li>
-          <li><a href="">tietoa sovelluksesta</a></li>
-          <li><a href="">poistu</a></li>
-        </ul>
-      </header>
+      <Header />
       <div className="center">
         <nav>
-          <ul id="tenttimenu">
-            <li><a href="" id="eka">{tentti1.nimi}</a></li>
-            <li><a href="" id="toka" >{tentti2.nimi}</a></li>
+          <ul className="testmenu">
+            {tentit.map(tentti => <li><a href="">{tentti.nimi}</a></li>)}
           </ul>
         </nav>
-        <div>
-          {tentti1.kysymykset.map(kysymys => <div><Kysymys kysymys={kysymys} /></div>)}
-        </div>
+        <Tentti tentti={tentit[0]} tentinIndex='0' dispatch={dispatch} />
         <div className="width">
           <a href="" id="nayta">Näytä vastaukset</a>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default App;
